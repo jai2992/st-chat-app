@@ -6,7 +6,7 @@ import time
 import numpy as np
 from langchain_groq import ChatGroq  # Assuming you use LangChain for summary
 
-st.title("Chat with Llama")
+# st.title("Chat with Llama")
 
 # Check if the GROQ API Key is available in the secrets
 if "GROQ_API_KEY" not in st.secrets:
@@ -53,9 +53,9 @@ if "show_summary" not in st.session_state:
 # Function to summarize long chat history using LangChain
 def summarize_chat_history(history):
     llm = ChatGroq(
-    temperature=0,
-    model=selected_model,
-    api_key=st.secrets["GROQ_API_KEY"]
+        temperature=0,
+        model=selected_model,
+        api_key=st.secrets["GROQ_API_KEY"]
     )  # LangChain model for summarization, adjust based on your setup
     conversation_text = "\n".join([msg["content"] for msg in history if msg["role"] == "user" or msg["role"] == "assistant"])
     
@@ -74,7 +74,6 @@ for i, message in enumerate(st.session_state.messages):
     if message["role"] == "user":
         if st.button(f"Edit", key=f"edit_{i}"):
             st.session_state.edited_index = i  # Set the index to edit
-            break  # Stop the chat display so that the history rewinds after editing
 
 # Input box for user prompt (without `value` argument)
 prompt = st.chat_input("What is up?")

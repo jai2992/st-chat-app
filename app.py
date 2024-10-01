@@ -74,11 +74,12 @@ for i, message in enumerate(st.session_state.messages):
     if message["role"] == "user":
         if st.button(f"Edit", key=f"edit_{i}"):
             st.session_state.edited_index = i  # Set the index to edit
-            st.session_state.chat_input = message["content"]  # Prefill the input with the message content
             break  # Stop the chat display so that the history rewinds after editing
 
-# Input box for user prompt (editable)
-if prompt := st.chat_input("What is up?", value=st.session_state.get("chat_input", "")):
+# Input box for user prompt (without `value` argument)
+prompt = st.chat_input("What is up?")
+
+if prompt:
     if st.session_state.edited_index is not None:
         # If editing, replace the message at the edited index
         st.session_state.messages[st.session_state.edited_index]["content"] = prompt
@@ -86,8 +87,6 @@ if prompt := st.chat_input("What is up?", value=st.session_state.get("chat_input
     else:
         # If not editing, add the message as a new input
         st.session_state.messages.append({"role": "user", "content": prompt})
-    
-    st.session_state.chat_input = ""  # Clear input after submission
     
     # Generate assistant response using the selected model
     with st.chat_message("assistant"):

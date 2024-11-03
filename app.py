@@ -34,7 +34,7 @@ def stream_data(txt):
         time.sleep(0.05)
 
 # Input box for user prompt
-prompt = st.text_input("What is up?", placeholder="Ask the AI anything...")
+prompt = st.chat_input("What is up?")
 
 if prompt:
     # Add the message as a new input

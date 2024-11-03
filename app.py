@@ -2,7 +2,10 @@ import streamlit as st
 import pandas as pd
 import groq
 import time
+
 st.set_page_config(initial_sidebar_state="collapsed")
+st.title("Ask LLM Anything")
+
 if "GROQ_API_KEY" not in st.secrets:
     st.error("Please create a secrets.toml file with a GROQ_API_KEY")
 else:

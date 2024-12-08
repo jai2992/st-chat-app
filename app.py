@@ -41,7 +41,7 @@ use_cases = {
 selected_model = st.sidebar.selectbox("Select a model", groq_models)
 selected_use_case = st.sidebar.selectbox("Select a use case", use_cases.keys())
 
-initial_prompt = use_cases[selected_use_case]
+initial_prompt = use_cases['AI Tutor']
 
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "system", "content": initial_prompt}]
